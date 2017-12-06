@@ -36,4 +36,20 @@ public class PlaneController {
 
         return plane;
     }
+
+    /**
+     * This method sets the current fuel level of a plane at max level
+     * @param id id of the plane
+     * @return plane object
+     */
+    @RequestMapping(value = "tank/{id}", method = RequestMethod.PUT)
+    public Plane tank(@PathVariable long id){
+        Plane plane = planeRepository.findOne(id);
+
+        plane.setCurrentFuel(plane.getMaxFuel());
+
+        planeRepository.save(plane);
+
+        return plane;
+    }
 }

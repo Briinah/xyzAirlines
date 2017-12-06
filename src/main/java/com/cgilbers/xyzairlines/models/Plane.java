@@ -1,9 +1,6 @@
 package com.cgilbers.xyzairlines.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -18,6 +15,10 @@ public class Plane {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(unique = true)
+    @NotNull
+    private String serialNumber;
+
     // Maximum capacity of fuel tank
     @NotNull
     private int maxFuel;
@@ -28,7 +29,6 @@ public class Plane {
 
     // Empty constructor for spring
     public Plane(){
-        maxFuel = 5;
     }
 
     // Constructor for testing

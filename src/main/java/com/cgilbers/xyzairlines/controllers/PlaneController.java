@@ -1,5 +1,7 @@
 package com.cgilbers.xyzairlines.controllers;
 
+import com.cgilbers.xyzairlines.exceptions.IncorrectDestinationException;
+import com.cgilbers.xyzairlines.exceptions.NotEnoughFuelException;
 import com.cgilbers.xyzairlines.models.Airport;
 import com.cgilbers.xyzairlines.models.Plane;
 import com.cgilbers.xyzairlines.repositories.AirportRepository;
@@ -98,12 +100,12 @@ public class PlaneController {
 
         if(plane.getCurrentFuel() < 2) {
             System.out.println("Plane needs to tank!");
-            return null;
+            throw new NotEnoughFuelException("Plane id: " + id + " does not have enough fuel");
         }
 
-        if(!destination.getPlanes().contains(plane)) {
+        if(destination.getPlanes().contains(plane)) {
             System.out.println("Plane is already at the destination!");
-            return null;
+            throw new IncorrectDestinationException();
         }
 
         for(Airport airport: airportRepository.findAll()){

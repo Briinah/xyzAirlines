@@ -38,6 +38,7 @@ function addPlane(){
         success: function(result){
             console.log("success");
             getPlanes();
+            $("#plane-modal").modal("toggle");
         }
     });
 }

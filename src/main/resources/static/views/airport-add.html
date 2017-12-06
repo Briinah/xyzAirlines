@@ -1,0 +1,35 @@
+
+
+<div class="container">
+<row>
+    <h1>Fill in the airport details here.</h1>
+</row>
+<script type="text/javascript" src="js/airport_crud.js"></script>
+<script type="text/javascript" src="js/airport_addform.js"></script>
+<script>
+    getPlaneDropdown();
+</script>
+<br>
+<form class="formcenter" data-toggle="validator" role="form" id="airport-form">
+
+    <div class="row form-group">
+        <div class="col-25">
+            <label for="location-input">Location</label>
+        </div>
+        <div class="col-75">
+            <input type="text" class="form-control" id="location-input" placeholder="Enter location name" required>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-25">
+            <label for="planes-input">Planes</label>
+        </div>
+        <div class="col-75">
+            <select multiple class="form-control" id="planes-input"></select>
+        </div>
+    </div>
+    <div class="row">
+        <input type="submit" id="submitButton" value="Submit">
+    </div>
+</form>
+</div>

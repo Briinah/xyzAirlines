@@ -1,0 +1,36 @@
+<div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#plane-modal">
+    + add Plane
+    </button>
+    <h1>Plane overview</h1>
+
+    <br>
+    <table id="plane-table">
+        <thead>
+        <tr>
+            <th>Serial Number</th>
+            <th>Max fuel</th>
+            <th>Current fuel</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script type="text/javascript" src="js/plane_table.js"></script>
+<script type="text/javascript" src="js/plane_crud.js"></script>
+
+<!-- The Modal -->
+<div class="modal fade" id="plane-modal">
+    <div class="modal-dialog">
+        <div class="modal-content" id="plane-modal-container">
+            <!-- Include create booking modal -->
+            <script>
+            $(document).ready(function(){
+                loadModal("views/plane-add.html", "#plane-modal-container");
+            });
+            </script>
+        </div>
+    </div>
+</div>

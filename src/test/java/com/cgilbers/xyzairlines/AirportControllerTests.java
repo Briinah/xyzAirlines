@@ -53,7 +53,7 @@ public class AirportControllerTests {
     public void addAirportTest() throws Exception{
 
         List<Plane> planes = new ArrayList<>();
-        Airport airport = new Airport("Utrecht", planes);
+        Airport airport = new Airport("Utrecht", "Airport", planes);
 
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(airport);
@@ -65,7 +65,8 @@ public class AirportControllerTests {
                 .content(json))
                 .andDo(print())
                 .andExpect(jsonPath("$.id").value(airport.getId()))
-                .andExpect(jsonPath("$.location").value(airport.getLocation()))
+                .andExpect(jsonPath("$.city").value(airport.getCity()))
+                .andExpect(jsonPath("$.name").value(airport.getName()))
                 .andExpect(jsonPath("$.planes").value(airport.getPlanes()))
                 .andExpect(status().isOk());
 

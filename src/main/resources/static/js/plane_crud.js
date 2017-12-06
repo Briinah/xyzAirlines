@@ -20,10 +20,14 @@ function getPlanes(){
 function addPlane(){
     var planeSerialNo = $('#serial-input').val();
     var planeMaxFuel = $('#maxfuel-input').val();
+    var planeType = $('#type-input').val();
+    var planeCons = $('#consumption-input').val();
 
     var planeObject = {
         serialNumber : planeSerialNo,
-        maxFuel: planeMaxFuel
+        maxFuel: planeMaxFuel,
+        type: planeType,
+        consumptionRate: planeCons
     };
 
     var plane = JSON.stringify(planeObject);

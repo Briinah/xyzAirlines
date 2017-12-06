@@ -13,8 +13,8 @@ public interface AirportRepository extends CrudRepository<Airport, Long>{
 
     /**
      * Find an airport by the name of its location
-     * @param location String the location of the airport
+     * @param city String the location of the airport
      * @return If exists: Airport entity with the specified location, else null
      */
-    public Airport findOneByLocation(String location);
+    public Airport findOneByCity(String city);
 }

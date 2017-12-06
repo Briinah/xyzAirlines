@@ -41,16 +41,16 @@ public class AirportController {
 
     /**
      * This method gets an airport with a specific location
-     * @param location string, the location of the airport
+     * @param city string, the location of the airport
      * @return an airport object with specified location or throws an exception
      */
-    @RequestMapping(value = "get/{location}", method = RequestMethod.GET)
-    public Airport getByLocation(@PathVariable String location){
+    @RequestMapping(value = "get/{city}", method = RequestMethod.GET)
+    public Airport getByLocation(@PathVariable String city){
 
-        Airport airport = airportRepository.findOneByLocation(location);
+        Airport airport = airportRepository.findOneByCity(city);
 
         if(airport == null)
-            throw new ObjectNotFoundException("The airport with location " + location + " could not be found");
+            throw new ObjectNotFoundException("The airport with location " + city + " could not be found");
 
         return airport;
     }

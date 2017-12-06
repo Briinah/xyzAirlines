@@ -18,7 +18,11 @@ public class Airport {
 
     // The location of the airport
     @NotNull
-    private String location;
+    private String city;
+
+    // The name of the airport
+    @NotNull
+    private String name;
 
     // A list of planes currently at the airport
     @OneToMany
@@ -27,9 +31,9 @@ public class Airport {
     // empty constructor for spring
     public Airport(){}
 
-    // constructor for testing
-    public Airport(String location, List<Plane> planes) {
-        this.location = location;
+    public Airport(String city, String name, List<Plane> planes) {
+        this.city = city;
+        this.name = name;
         this.planes = planes;
     }
 
@@ -41,12 +45,20 @@ public class Airport {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Plane> getPlanes() {

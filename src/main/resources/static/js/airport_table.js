@@ -2,7 +2,8 @@ $(document).ready(function(){
     /* Fill datatable */
     $('#airport-table').DataTable({
         columns: [
-            {"data" : "location"},
+            {"data" : "city"},
+            {"data" : "name"},
             {"data" : "planes",
              "render":
                 function(data, type, full, meta){

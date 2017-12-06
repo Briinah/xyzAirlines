@@ -70,5 +70,4 @@ public class AirportControllerTests {
                 .andExpect(status().isOk());
 
     }
-
 }

@@ -5,10 +5,7 @@ import com.cgilbers.xyzairlines.models.Airport;
 import com.cgilbers.xyzairlines.repositories.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
 
@@ -30,6 +27,18 @@ public class AirportController {
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public Iterable<Airport> getAll(){
         return airportRepository.findAll();
+    }
+
+    /**
+     * This method saves an airport to the airport repository
+     * @param airport airport to be added
+     * @return the added airport object
+     */
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public Airport add(@RequestBody Airport airport){
+        airportRepository.save(airport);
+
+        return airport;
     }
 
     /**

@@ -96,11 +96,15 @@ public class PlaneController {
         Airport destination = airportRepository.findOne(location);
         Plane plane = planeRepository.findOne(id);
 
-        if(plane.getCurrentFuel() < 2)
+        if(plane.getCurrentFuel() < 2) {
             System.out.println("Plane needs to tank!");
+            return null;
+        }
 
-        if(!destination.getPlanes().contains(plane))
+        if(!destination.getPlanes().contains(plane)) {
             System.out.println("Plane is already at the destination!");
+            return null;
+        }
 
         for(Airport airport: airportRepository.findAll()){
             if(airport.getPlanes().contains(plane)) {

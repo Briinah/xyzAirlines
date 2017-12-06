@@ -85,4 +85,38 @@ public class PlaneController {
         return plane;
     }
 
+    /**
+     * This method adds the plane to the destination airport and removes 2 fuel from the plane
+     * @param id
+     * @param location
+     * @return
+     */
+    @RequestMapping(value = "fly/{id}/{location}", method = RequestMethod.PUT)
+    public Plane fly(@PathVariable long id, @PathVariable long location){
+        Airport destination = airportRepository.findOne(location);
+        Plane plane = planeRepository.findOne(id);
+
+        if(plane.getCurrentFuel() < 2)
+            System.out.println("Plane needs to tank!");
+
+        if(!destination.getPlanes().contains(plane))
+            System.out.println("Plane is already at the destination!");
+
+        for(Airport airport: airportRepository.findAll()){
+            if(airport.getPlanes().contains(plane)) {
+                airport.getPlanes().remove(plane);
+                airportRepository.save(airport);
+            }
+        }
+
+        plane.setCurrentFuel(plane.getCurrentFuel() - 2);
+        destination.getPlanes().add(plane);
+
+        planeRepository.save(plane);
+        airportRepository.save(destination);
+
+        return plane;
+
+    }
+
 }

@@ -1,9 +1,15 @@
 package com.cgilbers.xyzairlines.controllers;
 
+import com.cgilbers.xyzairlines.models.Airport;
 import com.cgilbers.xyzairlines.models.Plane;
+import com.cgilbers.xyzairlines.repositories.AirportRepository;
 import com.cgilbers.xyzairlines.repositories.PlaneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.Request;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents the plane controller
@@ -16,6 +22,9 @@ public class PlaneController {
     @Autowired
     PlaneRepository planeRepository;
 
+    @Autowired
+    AirportRepository airportRepository;
+
     /**
      * This method gets all the planes in the repository
      * @return list of planes
@@ -23,6 +32,29 @@ public class PlaneController {
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public Iterable<Plane> getAll(){
         return planeRepository.findAll();
+    }
+
+    /**
+     * This method gets all planes that are not yet on an airport
+     * @return list of planes
+     */
+    @RequestMapping(value = "stationary", method = RequestMethod.GET)
+    public Iterable<Plane> getStationary(){
+
+        List<Plane> list = new ArrayList<>();
+
+        for(Plane plane : planeRepository.findAll()) {
+            boolean free = true;
+            for (Airport airport : airportRepository.findAll()) {
+                if(airport.getPlanes().contains(plane))
+                    free = false;
+            }
+
+            if(free)
+                list.add(plane);
+        }
+
+        return list;
     }
 
     /**
@@ -52,4 +84,5 @@ public class PlaneController {
 
         return plane;
     }
+
 }

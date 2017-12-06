@@ -3,7 +3,7 @@
      console.log("getting planes");
 
       $.ajax({
-          url:"http://localhost:8080/api/plane/all",
+          url:"http://localhost:8080/api/plane/stationary",
           type:"get",
           success: function(planes) {
               console.log("These are the planes: " + planes);
@@ -29,6 +29,7 @@ $(document).ready(function(){
           // Prevent submit to form
           e.preventDefault();
           addAirport();
+          getPlaneDropdown();
       }
   });
 });

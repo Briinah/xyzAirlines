@@ -1,6 +1,9 @@
 <div class="container">
     <h1>Plane overview</h1>
-
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#plane-modal">
+        + add Plane
+    </button>
+    <br>
     <table id="plane-table">
         <thead>
         <tr>
@@ -14,3 +17,18 @@
 </div>
 
 <script type="text/javascript" src="js/plane_table.js"></script>
+<script type="text/javascript" src="js/plane_crud.js"></script>
+
+<!-- The Modal -->
+<div class="modal fade" id="plane-modal">
+    <div class="modal-dialog">
+        <div class="modal-content" id="plane-modal-container">
+            <!-- Include create booking modal -->
+            <script>
+            $(document).ready(function(){
+                loadModal("views/plane-add.html", "#plane-modal-container");
+            });
+            </script>
+        </div>
+    </div>
+</div>

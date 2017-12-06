@@ -1,5 +1,8 @@
 <div class="container">
     <h1>Airport overview</h1>
+    <button type="button" class="btn btn-primary" onclick="addAirport()">
+        + add Airport
+    </button>
 
     <table id="airport-table">
         <thead>
@@ -12,4 +15,19 @@
     </table>
 </div>
 
+<script type="text/javascript" src="js/airport_crud.js"></script>
 <script type="text/javascript" src="js/airport_table.js"></script>
+
+<!-- The Modal -->
+<div class="modal fade" id="airport-modal">
+    <div class="modal-dialog">
+        <div class="modal-content" id="airport-modal-container">
+            <!-- Include create booking modal -->
+            <script>
+            $(document).ready(function(){
+                loadModal("views/airport-add.html", "#airport-modal-container");
+            });
+            </script>
+        </div>
+    </div>
+</div>

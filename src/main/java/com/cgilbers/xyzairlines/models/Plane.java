@@ -32,7 +32,8 @@ public class Plane {
     }
 
     // Constructor for testing
-    public Plane(int maxFuel, int currentFuel) {
+    public Plane(String serialNumber, int maxFuel, int currentFuel) {
+        this.serialNumber = serialNumber;
         this.maxFuel = maxFuel;
         this.currentFuel = currentFuel;
     }
@@ -59,5 +60,13 @@ public class Plane {
 
     public void setCurrentFuel(int currentFuel) {
         this.currentFuel = currentFuel;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 }

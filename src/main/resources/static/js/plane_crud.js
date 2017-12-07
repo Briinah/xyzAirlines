@@ -46,3 +46,16 @@ function addPlane(){
         }
     });
 }
+
+/* Sends api call to delete a plane with id */
+function deletePlane(id){
+
+    $.ajax({
+        url:"http://localhost:8080/api/plane/delete/" + id,
+        type:"delete",
+        success: function(result){
+            console.log("plane deleted");
+            getPlanes();
+        }
+    });
+}

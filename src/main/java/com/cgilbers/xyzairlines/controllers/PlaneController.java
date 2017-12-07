@@ -139,7 +139,7 @@ public class PlaneController {
         if(plane == null)
             throw new ObjectNotFoundException("The plane could not be found");
 
-        airportRepository.delete(id);
+        planeRepository.delete(id);
 
         return plane;
     }

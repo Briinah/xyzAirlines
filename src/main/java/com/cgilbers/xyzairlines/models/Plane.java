@@ -35,7 +35,6 @@ public class Plane {
     public Plane(){
     }
 
-    // Constructor for testing
     public Plane(String serialNumber, int maxFuel, int currentFuel, int consumptionRate) {
         this.serialNumber = serialNumber;
         this.maxFuel = maxFuel;

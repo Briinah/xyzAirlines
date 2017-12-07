@@ -34,6 +34,7 @@ $(document).ready(function(){
 
 var currentPlaneId;
 
+/* Send api call to fly a plane to a new destination */
 function fly(){
 
     var inputDestination = $('#destination-input').val();

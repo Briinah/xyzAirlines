@@ -98,7 +98,7 @@ public class PlaneController {
         Airport destination = airportRepository.findOne(location);
         Plane plane = planeRepository.findOne(id);
 
-        if(plane.getCurrentFuel() < 2) {
+        if(plane.getCurrentFuel() < plane.getConsumptionRate()) {
             System.out.println("Plane needs to tank!");
             throw new NotEnoughFuelException("Plane id: " + id + " does not have enough fuel");
         }
@@ -115,7 +115,7 @@ public class PlaneController {
             }
         }
 
-        plane.setCurrentFuel(plane.getCurrentFuel() - 2);
+        plane.setCurrentFuel(plane.getCurrentFuel() - plane.getConsumptionRate());
         destination.getPlanes().add(plane);
 
         planeRepository.save(plane);

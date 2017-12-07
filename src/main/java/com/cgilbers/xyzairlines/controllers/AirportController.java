@@ -82,4 +82,22 @@ public class AirportController {
 
         return airport;
     }
+
+    /**
+     * This method deletes an airport from the repository
+     * @param id the airport to delete
+     * @return the airport object
+     */
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public Airport delete(@PathVariable long id){
+
+        Airport airport = airportRepository.findOne(id);
+
+        if(airport == null)
+            throw new ObjectNotFoundException("The airport could not be found");
+
+        airportRepository.delete(id);
+
+        return airport;
+    }
 }

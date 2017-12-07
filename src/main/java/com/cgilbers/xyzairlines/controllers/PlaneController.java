@@ -2,6 +2,7 @@ package com.cgilbers.xyzairlines.controllers;
 
 import com.cgilbers.xyzairlines.exceptions.IncorrectDestinationException;
 import com.cgilbers.xyzairlines.exceptions.NotEnoughFuelException;
+import com.cgilbers.xyzairlines.exceptions.ObjectNotFoundException;
 import com.cgilbers.xyzairlines.models.Airport;
 import com.cgilbers.xyzairlines.models.Plane;
 import com.cgilbers.xyzairlines.repositories.AirportRepository;
@@ -123,6 +124,24 @@ public class PlaneController {
 
         return plane;
 
+    }
+
+    /**
+     * This method deletes an plane from the repository
+     * @param id the plane to delete
+     * @return the plane object
+     */
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public Plane delete(@PathVariable long id){
+
+        Plane plane = planeRepository.findOne(id);
+
+        if(plane == null)
+            throw new ObjectNotFoundException("The plane could not be found");
+
+        airportRepository.delete(id);
+
+        return plane;
     }
 
 }

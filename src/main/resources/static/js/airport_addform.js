@@ -1,4 +1,4 @@
-/* Get all animals and add them to the dropdown menu for the zookeeper form */
+/* Get all planes and add them to the dropdown menu for the airport form */
  function getPlaneDropdown(){
      console.log("getting planes");
 

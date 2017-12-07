@@ -1,5 +1,5 @@
 
-/* Get all airports from the db */
+/* Get all planes from the db */
 function getPlanes(){
     console.log("getting planes");
 

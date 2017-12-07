@@ -17,6 +17,7 @@ $(document).ready(function(){
 
     var table = $('#plane-table').DataTable();
 
+    // set click event for the tank button
     $('#plane-table tbody').on( 'click', 'button.tank', function () {
         var data = table.row( $(this).parents('tr') ).data();
 
@@ -32,6 +33,7 @@ $(document).ready(function(){
         });
     } );
 
+    // set click event for the fly button
     $('#plane-table tbody').on('click', 'button.fly' , function(){
         var data = table.row($(this).parents('tr')).data();
 
@@ -43,6 +45,7 @@ $(document).ready(function(){
         $('#fly-modal').modal('show');
     });
 
+    // set click event for the delete button
     $('#plane-table tbody').on('click', 'button.delete' , function(){
         var data = table.row($(this).parents('tr')).data();
 

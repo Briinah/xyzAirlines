@@ -34,7 +34,12 @@ $(document).ready(function(){
     $('#plane-table tbody').on('click', 'button.fly' , function(){
         var data = table.row($(this).parents('tr')).data();
 
-        console.log('fly!');
+        currentPlaneId = data['id'];
+
+        getLocationDropdown();
+
+        $('#fly-error-message').html("");
+        $('#fly-modal').modal('show');
     });
 });
 

@@ -2,10 +2,15 @@ package com.cgilbers.xyzairlines.controllers;
 
 import com.cgilbers.xyzairlines.exceptions.ObjectNotFoundException;
 import com.cgilbers.xyzairlines.models.Airport;
+import com.cgilbers.xyzairlines.models.Plane;
 import com.cgilbers.xyzairlines.repositories.AirportRepository;
+import com.cgilbers.xyzairlines.repositories.PlaneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents the airport controller
@@ -18,6 +23,9 @@ public class AirportController {
     @Autowired
     AirportRepository airportRepository;
 
+    @Autowired
+    PlaneRepository planeRepository;
+
     /**
      * This method gets all the airports in the repository
      * @return list of airports
@@ -25,6 +33,26 @@ public class AirportController {
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public Iterable<Airport> getAll(){
         return airportRepository.findAll();
+    }
+
+    /**
+     * This methods gets all the airport without the one where the specified plane is already stationed
+     * @param planeId
+     * @return list of airports
+     */
+    @RequestMapping(value = "destinations/{planeId}", method = RequestMethod.GET)
+    public Iterable<Airport> getAllAirportsWithoutPlane(@PathVariable long planeId){
+        Plane plane = planeRepository.findOne(planeId);
+
+        List<Airport> list = new ArrayList<>();
+
+        for(Airport a : airportRepository.findAll()){
+            if(!a.getPlanes().contains(plane)){
+                list.add(a);
+            }
+        }
+
+        return list;
     }
 
     /**

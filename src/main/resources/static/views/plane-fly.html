@@ -1,0 +1,22 @@
+<div class="container">
+    <row>
+        <h1>Fly to another airport</h1>
+    </row>
+    <br>
+    <form class="formcenter" data-toggle="validator" role="form" id="fly-form">
+        <div class="row form-group">
+            <div class="col-25">
+                <label for="destination-input">Destination</label>
+            </div>
+            <div class="col-75">
+                <select class="form-control" id="destination-input"></select>
+            </div>
+            <div id="fly-error-message"></div>
+        </div>
+        <div class="row">
+            <input type="submit" id="submitButton" value="Submit">
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="js/plane_crud.js"></script>
+<script type="text/javascript" src="js/plane_flyform.js"></script>

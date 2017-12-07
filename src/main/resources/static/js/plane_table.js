@@ -3,9 +3,13 @@ $(document).ready(function(){
     $('#plane-table').DataTable({
         columns: [
             {"data" : "serialNumber"},
+            {"data" : "type"},
             {"data" : "maxFuel" },
             {"data" : "currentFuel"},
-            {"defaultContent" : "<button class='btn btn-default'>Tank</button>"}
+            {"data" : "consumptionRate"},
+            {"defaultContent" : "<button class='tank btn btn-default'>Tank</button>"},
+            {"defaultContent" : "<button class='fly btn btn-default'>Fly</button>"},
+            {"defaultContent" : "<button class='delete btn btn-danger'>Delete</button>"}
         ]
     });
 
@@ -13,7 +17,7 @@ $(document).ready(function(){
 
     var table = $('#plane-table').DataTable();
 
-    $('#plane-table tbody').on( 'click', 'button', function () {
+    $('#plane-table tbody').on( 'click', 'button.tank', function () {
         var data = table.row( $(this).parents('tr') ).data();
 
         console.log(data['id']);
@@ -27,6 +31,25 @@ $(document).ready(function(){
             }
         });
     } );
+
+    $('#plane-table tbody').on('click', 'button.fly' , function(){
+        var data = table.row($(this).parents('tr')).data();
+
+        currentPlaneId = data['id'];
+
+        getLocationDropdown();
+
+        $('#fly-error-message').html("");
+        $('#fly-modal').modal('show');
+    });
+
+    $('#plane-table tbody').on('click', 'button.delete' , function(){
+        var data = table.row($(this).parents('tr')).data();
+
+        currentPlaneId = data['id'];
+
+        deletePlane(currentPlaneId);
+    });
 });
 
 

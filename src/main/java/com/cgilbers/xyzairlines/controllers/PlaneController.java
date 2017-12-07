@@ -1,5 +1,8 @@
 package com.cgilbers.xyzairlines.controllers;
 
+import com.cgilbers.xyzairlines.exceptions.IncorrectDestinationException;
+import com.cgilbers.xyzairlines.exceptions.NotEnoughFuelException;
+import com.cgilbers.xyzairlines.exceptions.ObjectNotFoundException;
 import com.cgilbers.xyzairlines.models.Airport;
 import com.cgilbers.xyzairlines.models.Plane;
 import com.cgilbers.xyzairlines.repositories.AirportRepository;
@@ -96,14 +99,14 @@ public class PlaneController {
         Airport destination = airportRepository.findOne(location);
         Plane plane = planeRepository.findOne(id);
 
-        if(plane.getCurrentFuel() < 2) {
+        if(plane.getCurrentFuel() < plane.getConsumptionRate()) {
             System.out.println("Plane needs to tank!");
-            return null;
+            throw new NotEnoughFuelException("Plane id: " + id + " does not have enough fuel");
         }
 
-        if(!destination.getPlanes().contains(plane)) {
+        if(destination.getPlanes().contains(plane)) {
             System.out.println("Plane is already at the destination!");
-            return null;
+            throw new IncorrectDestinationException();
         }
 
         for(Airport airport: airportRepository.findAll()){
@@ -113,7 +116,7 @@ public class PlaneController {
             }
         }
 
-        plane.setCurrentFuel(plane.getCurrentFuel() - 2);
+        plane.setCurrentFuel(plane.getCurrentFuel() - plane.getConsumptionRate());
         destination.getPlanes().add(plane);
 
         planeRepository.save(plane);
@@ -121,6 +124,24 @@ public class PlaneController {
 
         return plane;
 
+    }
+
+    /**
+     * This method deletes an plane from the repository
+     * @param id the plane to delete
+     * @return the plane object
+     */
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public Plane delete(@PathVariable long id){
+
+        Plane plane = planeRepository.findOne(id);
+
+        if(plane == null)
+            throw new ObjectNotFoundException("The plane could not be found");
+
+        planeRepository.delete(id);
+
+        return plane;
     }
 
 }

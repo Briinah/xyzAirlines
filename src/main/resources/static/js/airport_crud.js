@@ -18,6 +18,7 @@ function getAirports(){
 /* Send api call to add airport */
 function addAirport(){
     var inputLocation = $('#location-input').val();
+    var inputName = $('#name-input').val();
     var inputPlanes = $('#planes-input').val();
 
     // create an array of animal id's
@@ -30,7 +31,8 @@ function addAirport(){
 
     // create zookeeper object
     var airportObject = {
-                location : inputLocation,
+                city : inputLocation,
+                name : inputName,
                 planes : planeArray
     };
 
@@ -48,6 +50,20 @@ function addAirport(){
             getAirports();
 
             $("#airport-modal").modal("toggle");
+        }
+    });
+}
+
+/* Sends an api call to delete an airport */
+function deleteAirport(id){
+
+    $.ajax({
+        url:"http://localhost:8080/api/airport/delete/" + id,
+        type:"delete",
+        success: function(result){
+            console.log("airport deleted");
+            getAirports();
+            getPlaneDropdown();
         }
     });
 }

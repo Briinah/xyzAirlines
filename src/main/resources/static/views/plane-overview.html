@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#plane-modal">
     + add Plane
     </button>
@@ -9,8 +9,12 @@
         <thead>
         <tr>
             <th>Serial Number</th>
+            <th>Type</th>
             <th>Max fuel</th>
             <th>Current fuel</th>
+            <th>Consumption rate</th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
         </thead>
@@ -30,6 +34,18 @@
             $(document).ready(function(){
                 loadModal("views/plane-add.html", "#plane-modal-container");
             });
+            </script>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fly-modal">
+    <div class="modal-dialog">
+        <div class="modal-content" id="fly-modal-container">
+            <script>
+                $(document).ready(function(){
+                    loadModal("views/plane-fly.html", "#fly-modal-container");
+                });
             </script>
         </div>
     </div>

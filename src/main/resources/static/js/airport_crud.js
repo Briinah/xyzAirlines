@@ -53,3 +53,17 @@ function addAirport(){
         }
     });
 }
+
+/* Sends an api call to delete an airport */
+function deleteAirport(id){
+
+    $.ajax({
+        url:"http://localhost:8080/api/airport/delete/" + id,
+        type:"delete",
+        success: function(result){
+            console.log("airport deleted");
+            getAirports();
+            getPlaneDropdown();
+        }
+    });
+}

@@ -86,10 +86,10 @@ public class AirportController {
     /**
      * This method deletes an airport from the repository
      * @param id the airport to delete
-     * @return the airport object
+     * @return the airport id
      */
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
-    public Airport delete(@PathVariable long id){
+    public long delete(@PathVariable long id){
 
         Airport airport = airportRepository.findOne(id);
 
@@ -98,6 +98,6 @@ public class AirportController {
 
         airportRepository.delete(id);
 
-        return airport;
+        return airport.getId();
     }
 }

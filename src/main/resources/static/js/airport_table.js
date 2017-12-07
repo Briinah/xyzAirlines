@@ -17,11 +17,20 @@ $(document).ready(function(){
                     });
                     return text;
                 }
-            }
+            },
+            {"defaultContent": "<button class='delete btn btn-danger'>Delete</button>"}
         ]
     });
 
     getAirports();
+
+    var table = $('#airport-table').DataTable();
+
+    $('#airport-table tbody').on('click', 'button.delete' , function(){
+        var data = table.row($(this).parents('tr')).data();
+
+        deleteAirport(data['id']);
+    });
 });
 
 
